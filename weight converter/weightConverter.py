@@ -1,26 +1,18 @@
 from tkinter import *
 
-weightTypes = ["Pounds", "Kilograms"]
 
 unitTypes = {
-    'Kilograms': 1,
-    'Tonne': 1000,
-    'Pounds': 2.20462,
-    'Ounces': 35.274,
-    'Milligrams': pow(10, -6),
-    'Micrograms': pow(10, -9),
-    'Grams': pow(10, -3),
-    'Stone': 0.157473,
+    'Tonnes': pow(10, -3),
+    'Kilograms': pow(10, 0),
+    'Grams': pow(10, 3),
+    'Milligrams': pow(10, 6),
+    'Micrograms': pow(10, 9),
 }
 
 
+# converts weight from one type of weight to another
 def calculate():
-    convertedValue = 0
-    if unitTypes.keys().end[weightType.get()] < unitTypes[convertedWeightType.get()]:
-        convertedValue = weight.get() * (unitTypes[weightType.get()] / unitTypes[convertedWeightType.get()])
-    print(f'initial weight type:{unitTypes[weightType.get()]} converted weight type: '
-          f'{unitTypes[convertedWeightType.get()]} converted value: {convertedValue}')
-    convertedValue = round(convertedValue,4)
+    convertedValue = weight.get() * (unitTypes[convertedWeightType.get()] / unitTypes[weightType.get()])
     convertedWeight.set(convertedValue)
 
 
@@ -35,20 +27,23 @@ weightType = StringVar(wc)
 weightType.set('Kilograms')
 menuWeight = OptionMenu(wc, weightType, *unitTypes.keys())
 menuWeight.grid(row=1, column=1)
+
 # entry to insert a number for the weight to be converted
 weight = IntVar(wc)
 weight.set(0)
-weightInput = Entry(wc, textvariable=weight, width=10, font=('times', 15))
+weightInput = Entry(wc, textvariable=weight, width=15, font=('times', 15))
 weightInput.grid(row=1, column=2)
+
 # create an option menu for the weight to be converted
 convertedWeightType = StringVar(wc)
-convertedWeightType.set('Tonne')
+convertedWeightType.set('Tonnes')
 menuWeight = OptionMenu(wc, convertedWeightType, *unitTypes.keys())
 menuWeight.grid(row=2, column=1)
+
 # entry for displaying the converted number
 convertedWeight = StringVar(wc)
 convertedWeight.set(0)
-convertedWeightInput = Entry(wc, textvariable=convertedWeight, width=10, font=('times', 15))
+convertedWeightInput = Entry(wc, textvariable=convertedWeight, width=15, font=('times', 15))
 convertedWeightInput.grid(row=2, column=2)
 
 # button that calculates the weight
